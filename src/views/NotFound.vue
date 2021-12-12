@@ -1,13 +1,12 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <div>
+      <h1>404,你的页面ooxx</h1>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'app',
+    name: 'NotFound'
 }
 </script>
 
