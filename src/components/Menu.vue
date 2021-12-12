@@ -1,40 +1,25 @@
 <template>
-<el-row class="tac">
-  <el-menu
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#409EFF">
-        <el-submenu :index="item.id+''" v-for="item in getMenuList" :key="item.id">
-            <template slot="title">
-                <i :class="item.icon"></i>
-                <span>{{item.name}}</span>
-            </template>
-            <!-- <el-menu-item :index="subItem.id" v-for="subItem in item.child" :key="subItem.id" :v-if="subItem==''">
-                <i class="el-icon-menu"></i>
-                <template slot="title">{{subItem.name}}</template>
-            </el-menu-item> -->
-            <el-submenu :index="subItem.id" v-for="subItem in item.child" :key="subItem.id">
-                    <template slot="title"><i :class="subItem.icon"></i>{{subItem.name}}</template>
-                    <el-menu-item :index="child.id" v-for="child in subItem.child" :key="child.id" :v-if="subItem!=''">
-                        <i :class="child.icon"></i>
-                        <template slot="title">{{child.name}}</template>
-                    </el-menu-item>
-            </el-submenu>
-            <!-- <el-submenu index="1-4">
-                <template slot="title">选项4</template>
-                <el-menu-item index="1-4-1">选项1</el-menu-item>
-            </el-submenu> -->
-        </el-submenu>
-      </el-menu>
-    </el-row>
+        <el-menu
+            background-color="#333744"
+            text-color="#fff"
+            :router="true"
+            active-text-color="#409EFF"
+            style="width:200px"
+            :collapse-transition="false"
+            :collapse="isCollapse">
+            <NavMenu :getMenuList="getMenuList"></NavMenu>
+        </el-menu>
 </template>
 
 <script>
+import NavMenu from '../components/NavMenu'
 export default {
     name: 'Menu',
+    props: ['isCollapse'],
+    components:{NavMenu},
     data(){
         return {
-            getMenuList:null,
+            getMenuList:[],
             iconsObj:{
                 '1':'iconfon icon-user',
                 '2':'iconfon icon-user',
@@ -63,6 +48,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

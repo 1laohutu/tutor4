@@ -8,8 +8,11 @@
           <el-button type="info" @click="logout">退出</el-button>
         </el-header>
         <el-container  style="height:580px">
-            <el-aside width="200px">
-              <Menu></Menu>
+            <el-aside :width="isCollapse?'65px':'200px'">
+              <div class="toggle-button" @click="toggleCollapse">
+                <i :class="isIconClass">
+              </i></div>
+              <Menu :isCollapse="isCollapse"></Menu>
             </el-aside>
         <el-container>
             <el-main>
@@ -43,8 +46,20 @@ export default {
                 platform:null,
                 iconCls:null
             },
-           
+            isCollapse:false,
+            isIconClass:"el-icon-arrow-left"
+
         }
+        },
+        methods:{
+          toggleCollapse(){
+              this.isCollapse=!this.isCollapse
+              if(this.isCollapse){
+                  this.isIconClass="el-icon-arrow-right"
+              }else{
+                this.isIconClass="el-icon-arrow-left"
+              }
+          }
         }
     }
 </script>
@@ -85,5 +100,13 @@ export default {
   }
   .home-container{
     height: 100%;
+  }
+  .toggle-button{
+    background-color: #4A5064;
+    font-size:20px;
+    line-height: 34px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
   }
 </style>
